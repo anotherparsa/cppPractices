@@ -9,7 +9,7 @@ int main(){
     int arr[] = {3, 6, 1, 4, 2, 5, 9, 7, 8};
     bubbleSort(arr, sizeof(arr) / sizeof(int));
     
-    for (int i = 0 ; i < 9 ; i++){
+    for (int i = 0 ; i < sizeof(arr) / sizeof(int) ; i++){
         cout << arr[i] << endl;
     }
 }
