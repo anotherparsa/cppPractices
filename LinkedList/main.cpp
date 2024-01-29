@@ -95,6 +95,22 @@ class LinkedList{
             }
             this->length += 1;
         }
+
+        void deleteFirst(){
+            if (this->head == nullptr || this->length == 0){
+                return;
+            }else{
+                Node* temp = head;
+                if(this->length == 1){
+                    this->head = nullptr;
+                    this->tail = nullptr;
+                }else{
+                    this->head = this->head->next;
+                }
+                delete temp;
+                this->length -=1 ;
+            }
+        }
 };
 
 int main(){
@@ -128,6 +144,15 @@ int main(){
     newLinkedList->getHead();
     newLinkedList->getTail();
     newLinkedList->printList();
-
+    newLinkedList->prepend(-1);
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+    newLinkedList->deleteFirst();
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
 
 }
