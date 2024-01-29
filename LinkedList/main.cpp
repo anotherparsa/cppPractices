@@ -27,11 +27,11 @@ class LinkedList{
         }
 
         void getHead(){
-            cout << "Head: " << this->head << endl;
+            cout << "Head: " << this->head->value << endl;
         }
 
         void getTail(){
-            cout << "Tail: " << this->tail << endl;
+            cout << "Tail: " << this->tail->value << endl;
         }
 
         void getLength(){
@@ -81,7 +81,6 @@ class LinkedList{
                     this->tail = nullptr;
                 }
                 delete temp;
-                this->length -= 1;
             }
         }
 
@@ -137,6 +136,28 @@ class LinkedList{
                 cout << "something went wrong" << endl;
             }
         }
+
+        void insert(int index, int value){
+            if (index < 0 || index > this->length){
+                cout << "Invalid index" << endl;
+            }else if (index == 0){
+                prepend(value);
+                cout << "Node has been added succesfully" << endl;
+            }else if (index == length){
+                append(value);
+                cout << "Node has been added succesfully" << endl;
+            }else{
+                Node* newNode = new Node(value);
+                Node* temp = head;
+                for (int i = 0 ; i < index-1; i++ ){
+                    temp = temp->next;
+                }
+                newNode->next = temp->next;
+                temp->next = newNode;
+                this->length += 1;
+                cout << "Node has been added succesfully" << endl;
+            }
+        }
 };
 
 int main(){
@@ -184,6 +205,11 @@ int main(){
     newLinkedList->getTail();
     newLinkedList->get(0);
     newLinkedList->set(1,5);
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+    newLinkedList->insert(1,-5);
     newLinkedList->getLength();
     newLinkedList->getHead();
     newLinkedList->getTail();
