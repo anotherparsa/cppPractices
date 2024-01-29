@@ -37,4 +37,16 @@ class LinkedList{
         void getLength(){
             cout << "Length: " << this->length << endl;
         }
+
+        void printList(){
+            if (this->head == nullptr || this->length == 0){
+                cout << "There are no nodes in the list yet, try adding with append" << endl;
+            }else{
+                Node* temp = head;
+                while(temp != nullptr){
+                    cout << temp->value << endl;
+                    temp = temp->next;
+                }
+            }
+        }
 }
