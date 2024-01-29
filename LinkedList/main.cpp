@@ -25,4 +25,8 @@ class LinkedList{
             this->tail = nullptr;
             this->length = 0;
         }
+
+        void getHead(){
+            cout << "Head: " << this->head << endl;
+        }
 }
