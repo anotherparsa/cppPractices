@@ -12,3 +12,10 @@ class Node{
             this->next = nullptr;
         }
 };
+
+class LinkedList{
+    private:
+        Node* head;
+        Node* tail;
+        int length;
+}
