@@ -123,8 +123,19 @@ class LinkedList{
                 }
                 cout << "the value in index " << index << " is: " << temp->value << endl;
             }
-            
+        }
 
+        void set(int index, int value){
+            Node* temp = head;
+            for (int i = 0 ; i < index; i++ ){
+                temp = temp->next;
+            }
+            if (temp != nullptr){
+                temp->value = value;
+                cout << "setting the value in index " << index << " To " << value << " finished" << endl;
+            }else{
+                cout << "something went wrong" << endl;
+            }
         }
 };
 
@@ -172,4 +183,11 @@ int main(){
     newLinkedList->getHead();
     newLinkedList->getTail();
     newLinkedList->get(0);
+    newLinkedList->set(1,5);
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+
+
 }
