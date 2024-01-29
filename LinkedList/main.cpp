@@ -83,4 +83,16 @@ class LinkedList{
                 delete temp;
             }
         }
+
+        void prepend(int value){
+            Node* newNode = new Node(value);
+            if (this->head == nullptr || this->length == 0){
+                this->head = newNode;
+                this->tail = newNode;
+            }else{
+                newNode->next = head;
+                head = newNode;
+            }
+            this->length += 1;
+        }
 }
