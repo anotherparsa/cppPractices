@@ -95,4 +95,39 @@ class LinkedList{
             }
             this->length += 1;
         }
+};
+
+int main(){
+    LinkedList* newLinkedList = new LinkedList();
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+    newLinkedList->append(1);
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+    newLinkedList->append(2);
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+    newLinkedList->append(3);
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+    newLinkedList->deleteLast();
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+    newLinkedList->prepend(0);
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->printList();
+
+
 }
