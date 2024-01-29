@@ -81,6 +81,7 @@ class LinkedList{
                     this->tail = nullptr;
                 }
                 delete temp;
+                this->length -= 1;
             }
         }
 
@@ -111,13 +112,25 @@ class LinkedList{
                 this->length -=1 ;
             }
         }
+
+        void get(int index){
+            if (index < 0 || index >= this->length){
+                cout << "Invalid index" << endl;
+            }else{
+                Node* temp = head;
+                for (int i = 0 ; i < index; i++ ){
+                    temp = temp->next;
+                }
+                cout << "the value in index " << index << " is: " << temp->value << endl;
+            }
+            
+
+        }
 };
 
 int main(){
     LinkedList* newLinkedList = new LinkedList();
     newLinkedList->getLength();
-    newLinkedList->getHead();
-    newLinkedList->getTail();
     newLinkedList->printList();
     newLinkedList->append(1);
     newLinkedList->getLength();
@@ -149,10 +162,14 @@ int main(){
     newLinkedList->getHead();
     newLinkedList->getTail();
     newLinkedList->printList();
-    newLinkedList->deleteFirst();
+    newLinkedList->prepend(-2);
     newLinkedList->getLength();
     newLinkedList->getHead();
     newLinkedList->getTail();
     newLinkedList->printList();
-
+    newLinkedList->deleteFirst();
+    newLinkedList->getLength();
+    newLinkedList->getHead();
+    newLinkedList->getTail();
+    newLinkedList->get(0);
 }
