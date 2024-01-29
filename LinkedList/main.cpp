@@ -29,8 +29,12 @@ class LinkedList{
         void getHead(){
             cout << "Head: " << this->head << endl;
         }
-        
+
         void getTail(){
             cout << "Tail: " << this->tail << endl;
+        }
+
+        void getLength(){
+            cout << "Length: " << this->length << endl;
         }
 }
