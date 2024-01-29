@@ -61,4 +61,26 @@ class LinkedList{
             }
             this->length += 1;
         }
+
+        void deleteLast(){
+            if (this->head == nullptr || this->length == 0){
+                return;
+            }else{
+                Node* temp = head;
+                Node* previous = head;
+                while(temp->next != nullptr){
+                    previous = temp;
+                    temp = temp->next;
+                }
+                this->tail = previous;
+                this->tail->next = nullptr;
+                this->length -= 1;
+                
+                if (this->length == 0){
+                    this->head = nullptr;
+                    this->tail = nullptr;
+                }
+                delete temp;
+            }
+        }
 }
