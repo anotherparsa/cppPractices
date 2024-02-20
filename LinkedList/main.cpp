@@ -18,7 +18,7 @@ class LinkedList{
         Node* head;
         Node* tail;
         int length;
-    
+
     public:
         LinkedList(){
             this->head = nullptr;
@@ -31,31 +31,31 @@ class LinkedList{
         }
 
         void getHead(){
-            if (isEmpty()){
+            if (this->isEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
-                cout << "Head address: " << this->head << " Head value: " << this->head->value << endl;
+                cout << "Head address: " << this->head << " The value of Head: " << this->head->value << endl;
             }
         }
 
         void getTail(){
-            if (isEmpty()){
+            if (this->isEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
-                cout << "Tail address: " << this->tail << " Tail value: " << this->tail->value << endl;
+                cout << "Tail address: " << this->tail << " The value of Tail: " << this->tail->value << endl;
             }
         }
 
         void getLength(){
-            cout << "Length: " << this->length << endl;
+            cout << "The length: " << this->length << endl;;
         }
 
         void printList(){
-            if (isEmpty()){
+            if (this->isEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 Node* temp = this->head;
-                while(temp != nullptr){
+                while (temp != nullptr){
                     cout << temp->value << endl;
                     temp = temp->next;
                 }
@@ -64,7 +64,7 @@ class LinkedList{
 
         void append(int value){
             Node* newNode = new Node(value);
-            if (isEmpty()){
+            if (this->isEmpty()){
                 this->head = newNode;
                 this->tail = newNode;
             }else{
@@ -72,16 +72,16 @@ class LinkedList{
                 this->tail = newNode;
             }
             this->length += 1;
-            cout << "Node has been added to the end of the list " << endl;
+            cout << "New Node has been added to the end of the list" << endl;
         }
 
         void deleteLast(){
-            if (isEmpty()){
+            if (this->isEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 Node* temp = this->head;
                 Node* previous = this->head;
-                while (temp->next != nullptr){
+                while(temp->next != nullptr){
                     previous = temp;
                     temp = temp->next;
                 }
@@ -93,29 +93,29 @@ class LinkedList{
                     this->tail = nullptr;
                 }
                 delete temp;
-                cout << "Node has been removed from the end of the list " << endl;
+                cout << "Node has been removed from the end of the list" << endl;
             }
         }
-
+        
         void prepend(int value){
             Node* newNode = new Node(value);
             if (isEmpty()){
-                this->head = nullptr;
-                this->tail = nullptr;
+                this->head = newNode;
+                this->tail = newNode;
             }else{
                 newNode->next = this->head;
                 this->head = newNode;
             }
             this->length += 1;
-            cout << "New Node has been added to the first of the list " << endl;
+            cout << "New Node has been added to the first of the list" << endl;
         }
 
         void deleteFirst(){
-            if (isEmpty()){
+            if (this->isEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 Node* temp = this->head;
-                if (this->length == 0){
+                if (this->length == 1){
                     this->head = nullptr;
                     this->tail = nullptr;
                 }else{
@@ -123,12 +123,14 @@ class LinkedList{
                 }
                 delete temp;
                 this->length -= 1;
-                cout << "Node has been removed from the end of the list" << endl;
-            }
+                cout << "Node has been removed from the first of the list" << endl;
+            }   
         }
 
         void get(int index){
-            if (index < 0 || index >= this->length){
+            if (this->isEmpty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (index < 0 || index >= this->length){
                 cout << "Invalid index" << endl;
             }else{
                 Node* temp = this->head;
@@ -136,7 +138,7 @@ class LinkedList{
                     temp = temp->next;
                 }
                 if (temp != nullptr){
-                    cout << "The value of Node in index " << index << " is " << temp->value << endl;
+                    cout << "The vlaue of Node in index " << index << " Is " << temp->value << endl;
                 }else{
                     cout << "Something went wrong" << endl;
                 }
@@ -144,7 +146,9 @@ class LinkedList{
         }
 
         void set(int index, int value){
-            if (index < 0 || index >= this->length){
+            if (this->isEmpty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (index < 0 || index >= this->length){
                 cout << "Invalid index" << endl;
             }else{
                 Node* temp = this->head;
@@ -152,7 +156,7 @@ class LinkedList{
                     temp = temp->next;
                 }
                 if (temp != nullptr){
-                    cout << "The value of Node in index " << index << " was " << temp->value ;
+                    cout << "The value of Node in index " << index << " Was " << temp->value;
                     temp->value = value;
                     cout << " Now it's " << temp->value << endl;
                 }else{
@@ -163,35 +167,37 @@ class LinkedList{
 
         void insert(int index, int value){
             if (index < 0 || index > this->length){
-                cout << "Invalid Index" << endl;
+                cout << "Invalid index" << endl;
             }else if (index == 0){
-                prepend(value);
-            }else if (index == this->length -1 ){
-                append(value);
+                this->prepend(value);
+            }else if (index == this->length){
+                this->append(value);
             }else{
-                Node* newNode = new Node(value);
-                Node* temp = this->head;
-                for (int i = 0 ; i < index - 1; i++){
-                    temp = temp->next;
+                Node* previous = this->head;
+                for (int i = 0 ; i < index - 1 ; i++){
+                    previous = previous->next;
                 }
-                if (temp != nullptr){
-                    newNode->next = temp->next;
-                    temp->next = newNode;
+                if (previous != nullptr){
+                    Node* newNode = new Node(value);
+                    newNode->next = previous->next;
+                    previous->next = newNode;
                 }else{
                     cout << "Something went wrong" << endl;
                 }
                 this->length += 1;
-                cout << "New Node with the value of " << value << " Has been added at index " << index << endl;
+                cout << "Node with the value of " << value << " Has been added at index " << index << endl;
             }
         }
 
         void deleteNode(int index){
-            if (index < 0 || index >= this->length){
+            if(isEmpty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (index < 0 || index >= this->length){
                 cout << "Invalid index" << endl;
             }else if (index == 0){
-                deleteFirst();
-            }else if (index = this->length - 1){
-                deleteLast();
+                this->deleteFirst();
+            }else if (index == this->length - 1){
+                this->deleteLast();
             }else{
                 Node* temp = this->head;
                 Node* previous = this->head;
@@ -199,11 +205,13 @@ class LinkedList{
                     previous = temp;
                     temp = temp->next;
                 }
-                if (previous != nullptr){
+                if(previous != nullptr){
                     previous->next = temp->next;
+                }else{
+                    cout << "Something went wrong" << endl;
                 }
                 this->length -= 1;
-                cout << "Node in the index of " << index << " with the value of " << temp->value << " has been removed" << endl;
+                cout << "Node has been removed at index " << index << endl;
                 delete temp;
             }
         }
