@@ -26,12 +26,12 @@ class LinkedList{
             this->length = 0;
         }
 
-        bool isEmpty(){
+        bool isListEmpty(){
             return (this->head == nullptr || this->length == 0);
         }
 
         void getHead(){
-            if (this->isEmpty()){
+            if (this->isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 cout << "Head address: " << this->head << " The value of Head: " << this->head->value << endl;
@@ -39,7 +39,7 @@ class LinkedList{
         }
 
         void getTail(){
-            if (this->isEmpty()){
+            if (this->isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 cout << "Tail address: " << this->tail << " The value of Tail: " << this->tail->value << endl;
@@ -51,7 +51,7 @@ class LinkedList{
         }
 
         void printList(){
-            if (this->isEmpty()){
+            if (this->isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 Node* temp = this->head;
@@ -64,7 +64,7 @@ class LinkedList{
 
         void append(int value){
             Node* newNode = new Node(value);
-            if (this->isEmpty()){
+            if (this->isListEmpty()){
                 this->head = newNode;
                 this->tail = newNode;
             }else{
@@ -76,7 +76,7 @@ class LinkedList{
         }
 
         void deleteLast(){
-            if (this->isEmpty()){
+            if (this->isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 Node* temp = this->head;
@@ -99,7 +99,7 @@ class LinkedList{
         
         void prepend(int value){
             Node* newNode = new Node(value);
-            if (isEmpty()){
+            if (this->isListEmpty()){
                 this->head = newNode;
                 this->tail = newNode;
             }else{
@@ -111,7 +111,7 @@ class LinkedList{
         }
 
         void deleteFirst(){
-            if (this->isEmpty()){
+            if (this->isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else{
                 Node* temp = this->head;
@@ -127,8 +127,8 @@ class LinkedList{
             }   
         }
 
-        void get(int index){
-            if (this->isEmpty()){
+        Node* getNode(int index){
+            if (this->isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else if (index < 0 || index >= this->length){
                 cout << "Invalid index" << endl;
@@ -138,15 +138,26 @@ class LinkedList{
                     temp = temp->next;
                 }
                 if (temp != nullptr){
-                    cout << "The vlaue of Node in index " << index << " Is " << temp->value << endl;
+                    return temp;
                 }else{
                     cout << "Something went wrong" << endl;
                 }
             }
         }
 
+        void getValue(int index){
+            if (this->isListEmpty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (index < 0 || index >= this->length){
+                cout << "Invalid index" << endl;
+            }else{
+                Node* temp = getNode(index);
+                cout << "The value of Node at Index " << index << " Is " << temp->value << endl;
+            }
+        }
+
         void set(int index, int value){
-            if (this->isEmpty()){
+            if (this->isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else if (index < 0 || index >= this->length){
                 cout << "Invalid index" << endl;
@@ -190,7 +201,7 @@ class LinkedList{
         }
 
         void deleteNode(int index){
-            if(isEmpty()){
+            if(isListEmpty()){
                 cout << "There are no Nodes in the list" << endl;
             }else if (index < 0 || index >= this->length){
                 cout << "Invalid index" << endl;
@@ -236,19 +247,55 @@ int main(){
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
+    MyLinkedList->append(3);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->append(4);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
     MyLinkedList->deleteLast();
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
-    MyLinkedList->prepend(5);
+    MyLinkedList->append(5);
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
-    MyLinkedList->prepend(10);
+    MyLinkedList->deleteLast();
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->deleteLast();
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->prepend(-1);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->prepend(-2);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->prepend(-3);
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
@@ -260,35 +307,71 @@ int main(){
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
-    MyLinkedList->get(0);
-    MyLinkedList->get(1);
-    MyLinkedList->get(4);
-    cout << "-------------------------------------------" << endl;
-    MyLinkedList->set(0, 6);
+    MyLinkedList->prepend(-4);
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
-    MyLinkedList->set(3, 2);
+    MyLinkedList->deleteFirst();
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
-    MyLinkedList->insert(2, 10);
+    MyLinkedList->deleteFirst();
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
-    MyLinkedList->insert(1, 300);
+    MyLinkedList->getValue(0);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->getValue(2);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->getValue(1);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->getValue(10);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->set(0, 100);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->set(50, 100);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->set(1, 200);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->set(3, 300);
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->insert(1, 500);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->insert(0, 600);
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
     MyLinkedList->getLength();
     cout << "-------------------------------------------" << endl;
     MyLinkedList->insert(2, 400);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->deleteNode(0);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->prepend(700);
+    MyLinkedList->printList();
+    MyLinkedList->getHead();
+    MyLinkedList->getTail();
+    MyLinkedList->getLength();
+    cout << "-------------------------------------------" << endl;
+    MyLinkedList->prepend(800);
     MyLinkedList->printList();
     MyLinkedList->getHead();
     MyLinkedList->getTail();
